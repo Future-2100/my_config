@@ -1,6 +1,0 @@
-#!/bin/csh
-
-alias cd 'cd \!*; ls'
-alias .. 'cd ..'
-alias ll 'ls -la'
-
