@@ -194,7 +194,7 @@ export LM_LICENSE_FILE=${LM_LICENSE_FILE}:${SYNOPSYS_HOME}/Synopsys.dat
 
 alias syn_lmg="${SCL_HOME}/linux64/bin/lmgrd -c ${SYNOPSYS_HOME}/Synopsys.dat -l /tmp/syn.license.log"
 alias lmdown="${CADENCE_HOME}/lmdown -all; ${SCL_HOME}/linux64/bin/lmdown -all"
-export PATH=${PATH}:${VCS_HOME}/bin:${VERDI_HOME}/bin:${DC_HOME}/bin:${VC_STATIC_HOME}/bin:${SCL_HOME}/linux64/bin
+export PATH=${PATH}:${VCS_HOME}/bin:${VERDI_HOME}/bin:${PT_HOME}/bin:${DC_HOME}/bin:${VC_STATIC_HOME}/bin:${SCL_HOME}/linux64/bin
 
 vcs64() {
   vcs -full64 $1;
