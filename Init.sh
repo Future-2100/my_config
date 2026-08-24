@@ -61,6 +61,8 @@ sudo cp -r /etc/yum.repos.d /etc/yum.repos.d.backup
 sudo dnf install tmux -y
 sudo dnf install csh ksh -y
 
+sudo dnf groupinstall "Development Tools" -y
+
 # Cadence dependency
 for DEP in openmotif mesa-libGLU libXScrnSaver ncurses-compat-libs xcb-util-wm xcb-util-image xcb-util-keysyms xcb-util-renderutil libnsl redhat-lsb ; do
   sudo dnf install ${DEP} -y
