@@ -160,6 +160,11 @@ ${INSTALLER_HOME}/installer \
   -platform common -platform linux64
 
 ${INSTALLER_HOME}/installer \
+  -source ${INIT_HOME}/Synopsys/pt_vW-2024.09-SP3 \
+  -target ${SYNOPSYS_HOME} \
+  -platform common -platform linux64
+
+${INSTALLER_HOME}/installer \
   -source ${INIT_HOME}/Synopsys/vc_static_vW-2024.09-SP1 \
   -target ${SYNOPSYS_HOME} \
   -platform common -platform linux64 \
@@ -168,6 +173,7 @@ ${INSTALLER_HOME}/installer \
 cp ${INIT_HOME}/pubkey1.6/Synopsys.dat ${SYNOPSYS_HOME}
 sed -i "s|DAEMON snpslmd|DAEMON snpslmd ${SYNOPSYS_HOME}/scl/2024.06/linux64/bin/snpslmd|g" ${SYNOPSYS_HOME}/Synopsys.dat
 ${INIT_HOME}/pubkey1.6/SynopsysMonoSlayer -d ${SYNOPSYS_HOME} -a
+${INIT_HOME}/ocad/bin/1patch -ecc ${SYNOPSYS_HOME}
 
 
 cat << 'EOF' >> ${HOME}/.bashrc
@@ -179,6 +185,7 @@ export VCS_HOME=${SYNOPSYS_HOME}/vcs/W-2024.09-SP1
 export VERDI_HOME=${SYNOPSYS_HOME}/verdi/W-2024.09-SP1
 export DC_HOME=${SYNOPSYS_HOME}/syn/W-2024.09-SP1
 export VC_STATIC_HOME=${SYNOPSYS_HOME}/vc_static/W-2024.09-SP1
+export PT_HOME=${SYNOPSYS_HOME}/prime/W-2024.09-SP3
 export SCL_HOME=${SYNOPSYS_HOME}/scl/2024.06
 
 export LD_LIBRARY_PATH=${VERDI_HOME}/share/PLI/VCS/linux64
