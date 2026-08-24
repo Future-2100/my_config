@@ -109,7 +109,6 @@ sed -i "s|/software/ocad/tools/licsrv/bin/cdslmd|${CADENCE_HOME}/cdslmd|g" ${CAD
 cp ${INIT_HOME}/ocad/tools/licsrv/bin/bin.cds/lmgrd ${CADENCE_HOME}
 cp ${INIT_HOME}/ocad/tools/licsrv/bin/bin.cds/lmdown ${CADENCE_HOME}
 ${INIT_HOME}/ocad/bin/1patch -ecc ${CADENCE_HOME}
-cp ${INIT_HOME}/ocad/tools/licsrv/bin/bin.cds/lmdown ${CADENCE_HOME}
 
 
 cat << 'EOF' >> ${HOME}/.bashrc
