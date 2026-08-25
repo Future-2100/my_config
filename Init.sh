@@ -171,6 +171,7 @@ ${INSTALLER_HOME}/installer \
   -product vc_static
 
 cp ${INIT_HOME}/pubkey1.6/Synopsys.dat ${SYNOPSYS_HOME}
+sed -i "s|YOURHOSTID|${HOSTID}|g" ${SYNOPSYS_HOME}/Synopsys.dat
 sed -i "s|DAEMON snpslmd|DAEMON snpslmd ${SYNOPSYS_HOME}/scl/2024.06/linux64/bin/snpslmd|g" ${SYNOPSYS_HOME}/Synopsys.dat
 ${INIT_HOME}/pubkey1.6/SynopsysMonoSlayer -d ${SYNOPSYS_HOME} -a
 ${INIT_HOME}/ocad/bin/1patch -ecc ${SYNOPSYS_HOME}
