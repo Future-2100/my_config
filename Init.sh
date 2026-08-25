@@ -47,7 +47,6 @@ EOF
 
 
 # Change the Tencent Mirror Source
-sudo chmod 777 /opt
 sudo cp -r /etc/yum.repos.d /etc/yum.repos.d.backup
 #sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 #  -e 's|^# baseurl=https://repo.almalinux.org|baseurl=https://mirrors.tencent.com|g' \
@@ -76,7 +75,7 @@ tar -xvf ${INIT_HOME}/Cadence/Base_DDI25.10.000_lnx86_5of7.tar
 tar -xvf ${INIT_HOME}/Cadence/Base_DDI25.10.000_lnx86_6of7.tar
 tar -xvf ${INIT_HOME}/Cadence/Base_DDI25.10.000_lnx86_7of7.tar
 
-export EDA_HOME=/opt/eda
+export EDA_HOME=/tools
 export CADENCE_HOME=${EDA_HOME}/Cadence
 export SYNOPSYS_HOME=${EDA_HOME}/Synopsys
 
@@ -114,7 +113,7 @@ ${INIT_HOME}/ocad/bin/1patch -ecc ${CADENCE_HOME}
 
 
 cat << 'EOF' >> ${HOME}/.bashrc
-export EDA_HOME=/opt/eda
+export EDA_HOME=/tools
 export CADENCE_HOME=${EDA_HOME}/Cadence
 
 export INNOVUS_HOME=${CADENCE_HOME}/INNOVUS251
