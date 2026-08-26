@@ -75,22 +75,22 @@ tar -xvf ${INIT_HOME}/Cadence/Base_DDI25.10.000_lnx86_5of7.tar
 tar -xvf ${INIT_HOME}/Cadence/Base_DDI25.10.000_lnx86_6of7.tar
 tar -xvf ${INIT_HOME}/Cadence/Base_DDI25.10.000_lnx86_7of7.tar
 
-export EDA_HOME=/tools
-export CADENCE_HOME=${EDA_HOME}/Cadence
-export SYNOPSYS_HOME=${EDA_HOME}/Synopsys
+export TOOLS_HOME=/tools
+export CADENCE_HOME=${TOOLS_HOME}/Cadence
+export SYNOPSYS_HOME=${TOOLS_HOME}/Synopsys
 
 
-mkdir -p ${EDA_HOME}
+mkdir -p ${TOOLS_HOME}
 mkdir -p ${CADENCE_HOME}
 mkdir -p ${SYNOPSYS_HOME}
-mkdir -p ${EDA_HOME}/iscape
+mkdir -p ${CADENCE_HOME}/iscape
 
 
 #######################################################################################################
 #                                         Installing Cadence
 #######################################################################################################
-tar -xZf ${INIT_HOME}/DDI25.10.000_lnx86.Base/CDROM1/IScape05.01-p001lnx86.t.Z -C ${EDA_HOME}/iscape
-export ISCAPE_HOME=${EDA_HOME}/iscape/iscape
+tar -xZf ${INIT_HOME}/DDI25.10.000_lnx86.Base/CDROM1/IScape05.01-p001lnx86.t.Z -C ${CADENCE_HOME}/iscape
+export ISCAPE_HOME=${CADENCE_HOME}/iscape/iscape
 
 ${ISCAPE_HOME}/bin/iscape.sh -batch MajorAction=InstallFromArchive \
   ArchiveDirectory=${INIT_HOME}/DDI25.10.000_lnx86.Base/CDROM1 \
@@ -113,8 +113,10 @@ ${INIT_HOME}/ocad/bin/1patch -ecc ${CADENCE_HOME}
 
 
 cat << 'EOF' >> ${HOME}/.bashrc
-export EDA_HOME=/tools
-export CADENCE_HOME=${EDA_HOME}/Cadence
+export TOOLS_HOME=/tools
+
+###################################### Cadence Environment Variable ###########################
+export CADENCE_HOME=${TOOLS_HOME}/Cadence
 
 export INNOVUS_HOME=${CADENCE_HOME}/INNOVUS251
 export GENUS_HOME=${CADENCE_HOME}/GENUS251
@@ -134,7 +136,7 @@ EOF
 #######################################################################################################
 #                                         Installing Synopsys
 #######################################################################################################
-export INSTALLER_HOME=${EDA_HOME}/installer
+export INSTALLER_HOME=${SYNOPSYS_HOME}/installer
 ${INIT_HOME}/Synopsys/SynopsysInstaller_v5_8/SynopsysInstaller_v5.8.run -dir ${INSTALLER_HOME}
 
 ${INSTALLER_HOME}/installer \
@@ -178,7 +180,9 @@ ${INIT_HOME}/ocad/bin/1patch -ecc ${SYNOPSYS_HOME}
 
 
 cat << 'EOF' >> ${HOME}/.bashrc
-export SYNOPSYS_HOME=${EDA_HOME}/Synopsys
+
+###################################### Synopsys Environment Variable ###########################
+export SYNOPSYS_HOME=${TOOLS_HOME}/Synopsys
 
 export SNPSLMD_LICENSE_FILE=27000@localhost.localdomain
 
@@ -202,4 +206,24 @@ vcs64() {
 }
 
 EOF
+
+
+############################ install clash #############################
+export CLASH_HOME=${TOOLS_HOME}/Clash
+
+curl https://glados.one/tools/clash-linux.zip -o ${TOOLS_HOME}/clash.zip
+unzip ${TOOLS_HOME}/clash.zip -d ${TOOLS_HOME}
+mv ${TOOLS_HOME}/clash ${CLASH_HOME}
+
+curl https://update.glados-config.com/clash/221274/194e6fa/133276/glados-terminal.yaml > ${CLASH_HOME}/glados.yaml
+mv ${CLASH_HOME}/clash-linux-amd64-v1.10.0 ${CLASH_HOME}/clash
+chmod +x ${CLASH_HOME}/clash
+
+cat << 'EOF' >> ${HOME}/.bashrc
+
+export CLASH_HOME=${TOOLS_HOME}/Clash
+alias clash="${CLASH_HOME}/clash -f ${CLASH_HOME}/glados.yaml -d ${CLASH_HOME}"
+
+EOF
+
 
