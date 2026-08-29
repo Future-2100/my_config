@@ -228,3 +228,10 @@ alias clash="${CLASH_HOME}/clash -f ${CLASH_HOME}/glados.yaml -d ${CLASH_HOME}"
 EOF
 
 
+
+######################### install oh-my-tmux #############################
+#clash &
+#git clone --single-branch https://github.com/gpakosz/.tmux.git ${HOME}/.tmux --config "http.proxy=127.0.0.1:7890"
+#ln -s -f ${HOME}/.tmux/.tmux.conf ${HOME}/.tmux.conf
+#cp ${HOME}/.tmux/.tmux.conf.local ${HOME}
+
