@@ -59,6 +59,7 @@ sudo cp -r /etc/yum.repos.d /etc/yum.repos.d.backup
 
 sudo dnf install tmux -y
 sudo dnf install csh ksh -y
+sudo dnf install gvim -y
 
 sudo dnf groupinstall "Development Tools" -y
 
